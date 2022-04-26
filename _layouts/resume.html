@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+{% include head.html %}
+<script src="https://kit.fontawesome.com/7c6102d59b.js" crossorigin="anonymous"></script>
+<link href="/images/ecv.css" rel="stylesheet">
+<body class="theme-{% if site.resume_theme %}{{ site.resume_theme }}{% endif %}">
+
+  <div class="wrapper resume-renderer resume-body-font center-resume resume-margins-2" id="resume-" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="telephone" content="{{ site.resume_contact_telephone }}" />
+    <meta itemprop="address" content="{{ site.resume_contact_address }}" />
+
+    <header class="page-header">
+
+      <div >
+        <div class="resume-header resume-header-with-photo editable">
+            <div class="resume-header-col resume-header-col-left">
+                <div class=" relative">
+                    <div 
+                        class=" input full-width-field editable-field name resume-heading-font resume-first-color uppercase-name"
+                        placeholder="Your Name"  
+                        style="white-space: pre-wrap;">SADHASIVAM JAYABALAGANESAN</div>
+                </div>
+                <div class="resume-header-title-placeholder">
+                    <div class=" relative">
+                        <div 
+                            class=" input full-width-field editable-field title resume-second-color resume-heading-font"
+                            placeholder="Your next desired role?"  
+                            style="white-space: pre-wrap;margin-bottom:3px">Director | Platform Engineering</div>
+                    </div>
+                </div>
+                <div class="with-icon-container top-sm resume-header-items header-info-container">
+                    <div class="resume-body-font with-icon">
+                      <i class="fa-solid fa-square-phone"></i>
+                        <div class=" relative">
+                            <div 
+                                class=" input full-width-field editable-field resume-body-font"
+                                placeholder="Phone"  
+                                style="white-space: pre-wrap;">+1 (610) 483-7859</div>
+                        </div>
+                    </div>
+                    <div class="resume-body-font with-icon">
+                      <i class="fa-solid fa-at"></i>
+                        <div class=" relative">
+                            <div 
+                                class=" input full-width-field editable-field resume-body-font"
+                                placeholder="Email"  
+                                style="white-space: pre-wrap;">sadhasivam@gmail.com</div>
+                        </div>
+                    </div>
+                    <div class="resume-body-font with-icon url-link">
+                      <i class="fa-brands fa-linkedin"></i>
+                        <div class=" relative">
+                            <div 
+                                class=" input full-width-field editable-field resume-body-font"
+                                placeholder="Website/Link"  
+                                style="white-space: pre-wrap;">linkedin.com/in/sadhasivam</div>
+                        </div>
+                    </div>
+                    <div class="resume-body-font with-icon">
+                      <i class="fa-solid fa-location-dot"></i>
+                        <div class=" relative">
+                            <div 
+                                class=" input full-width-field editable-field resume-body-font"
+                                placeholder="Location"  
+                                style="white-space: pre-wrap;">Chester Springs, PA</div>
+                        </div>
+                    </div>
+                    <div class="resume-body-font with-icon">
+                      <i class="fa-solid fa-award"></i>
+                        <div class=" relative">
+                            <div 
+                                class=" input full-width-field editable-field resume-body-font"
+                                placeholder="Location"  
+                                style="white-space: pre-wrap;">CSE • 1995-1999</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="resume-header-col resume-header-col-right photo-container relative">
+              <div class="photo relative photo-round editable" style="background-image: url(&quot;/images/avatar.jpg&quot;);">
+              </div>
+            </div>
+        </div>
+    </div>      
+
+
+      <div class="executive-summary " itemprop="description">
+        <div id="SummarySection-0" class="resume-section SummarySection resume-section-selected">
+          <div class="resume-section-container editable">
+              <div>
+                  <div class="resume-section-text-container">
+                      <div class=" relative">
+                          <div  
+                              class=" input text-field full-width-field editable-field resume-section-text resume-heading-font resume-first-border resume-first-color"
+                              placeholder="Summary" 
+                              style="white-space: pre-wrap;">Summary</div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="moveable-items">
+              <div class="resume-item-holder line-item editable hide-separating-border">
+                  <div id="sections-0-items-0" draggable="false">
+                      <div class="item-object summary-item">
+                          <div class="inner">
+                              <div class="  relative">
+                                  <div   class="editable-field "
+                                      placeholder="What's the one thing you want someone to remember after reading your resume?"
+                                      style="white-space: pre-wrap;">{{ site.resume_header_intro }}</div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </div>
+    </header>
+
+    {% if site.resume_section_experience %}
+    <!-- begin Experience -->
+    <section class="content-section">
+
+      {% include experience.html %}
+    </section>
+    <!-- end Experience -->
+    {% endif %}
+
+ 
+
+ 
+
+    {% if site.resume_section_skills %}
+    <!-- begin Skills -->
+    <section class="content-section">
+
+      <header class="section-header">
+        <h2>Skills</h2>
+      </header>
+      {% for skill in site.data.skills %}
+      <div class="resume-item">
+        <h4 class="resume-item-details">{{ skill.skill }}</h4>
+        <p class="resume-item-copy">{{ skill.description }}</p>
+      </div>
+      {% endfor %}
+
+    </section>
+    <!-- end Skills -->
+    {% endif %}
+  </div>
+
+</body>
+
+</html>
