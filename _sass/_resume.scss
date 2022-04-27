@@ -291,3 +291,9 @@
 .column {
   flex: 50%;
 }
+ 
+@media print {
+  a[href]:after {
+    content: none !important;
+  }
+}
