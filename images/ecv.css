@@ -20660,7 +20660,7 @@ a.editable-field {
 
 .resume-layout-default.resume-layout-small .resume-header .name {
     font-size: 38px !important;
-    line-height: 42px !important
+    line-height: 21px !important
 }
 
 .resume-layout-default.resume-layout-small .resume-header .title,
@@ -21880,7 +21880,7 @@ a.editable-field {
 }
 
 .resume-margins-2 .resume-section {
-    padding-bottom: 14px !important
+    padding-bottom: 9px !important
 }
 
 .resume-margins-3 .editable-field-highlights {
@@ -23890,7 +23890,7 @@ a.editable-field {
 
 .resume-header .name {
     font-size: 26px;
-    line-height: 50px;
+    line-height: 21px;
     font-weight: 700 !important;
     letter-spacing: 0 !important
 }
@@ -29725,12 +29725,11 @@ fieldset[disabled] .btn.btn-resume-data:hover {
 .tags .tag {
     border: 1px solid transparent;
     border-bottom-color: #a9a9a9;
-    padding: 5px 8px;
     background: transparent;
     min-width: 20px;
     margin: 5px;
     text-align: center;
-    font-size: 14px;
+    font-size: 9px;
     font-weight: 700;
     display: inline-block
 }

@@ -2,8 +2,6 @@
 <html>
 
 {% include head.html %}
-<script src="https://kit.fontawesome.com/7c6102d59b.js" crossorigin="anonymous"></script>
-<link href="/images/ecv.css" rel="stylesheet">
 <body class="theme-{% if site.resume_theme %}{{ site.resume_theme }}{% endif %}">
 
   <div class="wrapper resume-renderer resume-body-font center-resume resume-margins-2" id="resume-" itemscope itemtype="http://schema.org/Person">
@@ -19,7 +17,7 @@
                     <div 
                         class=" input full-width-field editable-field name resume-heading-font resume-first-color uppercase-name"
                         placeholder="Your Name"  
-                        style="white-space: pre-wrap;">SADHASIVAM JAYABALAGANESAN</div>
+                        style="white-space: pre-wrap;">{{ site.resume_name }}</div>
                 </div>
                 <div class="resume-header-title-placeholder">
                     <div class=" relative">
@@ -36,7 +34,7 @@
                             <div 
                                 class=" input full-width-field editable-field resume-body-font"
                                 placeholder="Phone"  
-                                style="white-space: pre-wrap;">+1 (610) 483-7859</div>
+                                style="white-space: pre-wrap;">{{ site.resume_contact_telephone }}</div>
                         </div>
                     </div>
                     <div class="resume-body-font with-icon">
@@ -45,7 +43,7 @@
                             <div 
                                 class=" input full-width-field editable-field resume-body-font"
                                 placeholder="Email"  
-                                style="white-space: pre-wrap;">sadhasivam@gmail.com</div>
+                                style="white-space: pre-wrap;">{{ site.resume_contact_email }}</div>
                         </div>
                     </div>
                     <div class="resume-body-font with-icon url-link">
@@ -54,7 +52,7 @@
                             <div 
                                 class=" input full-width-field editable-field resume-body-font"
                                 placeholder="Website/Link"  
-                                style="white-space: pre-wrap;">linkedin.com/in/sadhasivam</div>
+                                style="white-space: pre-wrap;"> <a href="{{ site.resume_social_links.resume_linkedin_url }}">LinkedIn</a> </div>
                         </div>
                     </div>
                     <div class="resume-body-font with-icon">
@@ -63,7 +61,7 @@
                             <div 
                                 class=" input full-width-field editable-field resume-body-font"
                                 placeholder="Location"  
-                                style="white-space: pre-wrap;">Chester Springs, PA</div>
+                                style="white-space: pre-wrap;"> {{ site.resume_contact_address }} </div>
                         </div>
                     </div>
                     <div class="resume-body-font with-icon">
@@ -87,14 +85,15 @@
                 </div>
             </div>
             <div class="resume-header-col resume-header-col-right photo-container relative">
-              <div class="photo relative photo-round editable" style="background-image: url(&quot;/images/avatar.jpg&quot;);">
+              <div class="photo relative photo-round editable">
+                <img class="photo relative photo-round editable" src="/images/avatar.jpg">
               </div>
             </div>
         </div>
     </div>      
 
 
-      <div class="executive-summary " itemprop="description">
+    
         <div id="SummarySection-0" class="resume-section SummarySection resume-section-selected">
           <div class="resume-section-container editable">
               <div>
@@ -108,7 +107,7 @@
                   </div>
               </div>
           </div>
-          <div class="moveable-items">
+           
               <div class="resume-item-holder line-item editable hide-separating-border">
                   <div id="sections-0-items-0" draggable="false">
                       <div class="item-object summary-item">
@@ -122,8 +121,8 @@
                       </div>
                   </div>
               </div>
-          </div>
-      </div>
+           
+     
       </div>
     </header>
 
@@ -136,21 +135,27 @@
     <!-- end Experience -->
     {% endif %}
 
- 
-
- 
-
     {% if site.resume_section_skills %}
     <!-- begin Skills -->
     <section class="content-section">
 
-      <header class="section-header">
-        <h2>My Time</h2>
-      </header>
+      <div class="columns">
+        <div class="column">
+          <header class="section-header">
+            <h2>My Time</h2>
+          </header>
+          {% include my_time.html %}
+        </div>
+        <div class="column">
+          <header class="section-header">
+            <h2>Technical Skills</h2>
+          </header>
+          {% include skills.html %}
 
-      {% include my_time.html %}
+       </div>
+     </div>
 
-
+  
     </section>
     <!-- end Skills -->
     {% endif %}
