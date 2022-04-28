@@ -1,0 +1,30 @@
+{
+  "name": "sadhasivam.github.io",
+  "version": "1.0.0",
+  "description": "Personal resume",
+  "homepage": "https://sadhasivam.github.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sadhasivam/sadhasivam.github.io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sadhasivam/sadhasivam.github.io/issues"
+  },
+  "license": "NonCommercial-ShareAlike 1.0 Generic",
+  "author": "Sadhasivam <sadhasivam@gmail.com>",
+  "scripts": {
+    "serve": "concurrently \"postcss ./tailwind.css -o public/css/resume.css --watch\"  \"live-server ./ \"",
+    "build": "cross-env NODE_ENV=build postcss ./tailwind.css -o ./public/css/resume.css"
+  },
+  "dependencies": {
+    "@fullhuman/postcss-purgecss": "^2.0.6",
+    "autoprefixer": "^9.7.4",
+    "concurrently": "^5.1.0",
+    "cross-env": "^7.0.0",
+    "cssnano": "^4.1.10",
+    "live-server": "^1.2.1",
+    "postcss-cli": "^7.0.0",
+    "postcss-import": "^12.0.1",
+    "tailwindcss": "^1.2.0"
+  }
+}
