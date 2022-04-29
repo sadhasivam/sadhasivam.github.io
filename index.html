@@ -8,6 +8,7 @@
   <meta name="author" content="sadhasivam jayabalaganesan">
   <meta name="robots" content="noindex"> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="favicon.png" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
@@ -51,7 +52,7 @@
 
             <section class="mb-4.5 break-inside-avoid">
               <header>
-                <h3 class="text-lg font-semibold text-gray-700 leading-snugish">
+                <h3 class="text-lg font-semibold  leading-snugish text-indigo-500">
                   Director | Platform engineering
                 </h3>
                 <p class="leading-normal text-xs text-gray-650">
@@ -333,11 +334,12 @@ fill="#000000" stroke="none">
                 legends.set("F", "Mentorship");
                 legends.set("G", "Technology");
 
-
+                let labels = [];
+                [...legends.keys()].forEach(key =>  labels.push(key + " : " + legends.get(key)));
                 const config = {
 	type: "doughnut",
 	data: {
-		labels: [ ...legends.values() ],
+		labels: labels,
 		datasets: [
 			{
 				label: "My Time",
@@ -362,7 +364,14 @@ fill="#000000" stroke="none">
                 display: true,
                 position: "bottom",
                 usePointStyle: true,
-                point: { pointStyle: "star" }
+                point: { pointStyle: "star" },
+                labels: {
+                font : {
+                  size: '10px',
+                  family: 'FiraGO'
+                },
+                color: 'rgb(104, 119, 141)',
+              }
             },
             datalabels: {
                 display: true,
@@ -373,21 +382,13 @@ fill="#000000" stroke="none">
                   return [ ...legends.keys() ][ctx.dataIndex];
                 },
                 font: {
-                    size: "15px"
+                    size: "12px"
                 },
                 color: "#fff",
                 backgroundColor: "blue",
               },
         },
-		datalabels: {
-			display: true,
-			formatter: (value) => {
-				return ctx.chart.data.labels[ctx.dataIndex];
-			},
-			color: "#fff",
-			backgroundColor: "#404040",
-		},
-		scales: {
+	 	scales: {
 			x: {
 				grid: { drawBorder: false, display: false },
 				ticks: {
