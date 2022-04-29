@@ -1,5 +1,8 @@
-window.onload = () => {
-   document.getElementById("resume-pdf").addEventListener("click", function() {
-     mixpanel.track("resume.pdf.click");
+window.addEventListener("load",function(event) {
+   let elementToEventMap = ["resume-pdf", "resume-github", "resume-linkedin"];
+   elementToEventMap.forEach(element => {
+       document.getElementById(element).addEventListener("click", function(){
+          mixpanel.track(element.replace('-', '.'))
+       });
    });
-}
+});

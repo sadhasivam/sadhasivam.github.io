@@ -73,8 +73,8 @@ const config = {
   },
 };
 
-window.onload = function () {
+window.addEventListener("load",function(event) {
   Chart.register(ChartDataLabels);
   const ctx = document.getElementById("day-of-my-life-label");
   const myChart = new Chart(ctx, config);
-};
+});
