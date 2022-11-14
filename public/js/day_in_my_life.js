@@ -8,7 +8,7 @@ legends.set("F", "Mentorship");
 legends.set("G", "Technology");
 
 let labels = [];
-[...legends.keys()].forEach((key) => labels.push(key + " : " + legends.get(key)));
+[...legends.keys()].forEach((key) => labels.push(`${key} : ${legends.get(key)}`));
 const config = {
   type: "doughnut",
   data: {
@@ -73,7 +73,7 @@ const config = {
   },
 };
 
-window.addEventListener("load",function(event) {
+window.addEventListener("load", function (event) {
   Chart.register(ChartDataLabels);
   const ctx = document.getElementById("day-of-my-life-label");
   const myChart = new Chart(ctx, config);
