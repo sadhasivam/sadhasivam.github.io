@@ -1,24 +1,22 @@
 var legends = new Map();
-legends.set("A", "Advocacy");
-legends.set("B", "Business Engagement");
-legends.set("C", "Collaboration");
-legends.set("D", "Personal Growth");
-legends.set("E", "Product Engineering");
-legends.set("F", "Mentorship");
-legends.set("G", "Technology");
+legends.set("Work", ['Calls','Product Engg', 'Developmet', 'Technology', 'Mentorship']);
+legends.set("Family", "Being myself");
+legends.set("Stride", "Reading, Talk to peers, listening");
+legends.set("Wellness", "Running, Martial Arts, Sleep");
+
 
 let labels = [];
 [...legends.keys()].forEach((key) => labels.push(`${key} : ${legends.get(key)}`));
 const config = {
-  type: "doughnut",
+  type: "polarArea",
   data: {
     labels: labels,
     datasets: [
       {
         label: "My Time",
-        data: [50, 60, 40, 40, 50, 60, 30],
-        backgroundColor: ["darkblue", "blue", "steelblue", "dodgerblue", "deepskyblue", "lightskyblue", "powderblue"],
-        borderColor: ["white", "white", "white", "white", "white", "white"],
+        data: [24,18, 15, 10],
+        backgroundColor: ["Red", "green", "grey", "steelblue"],
+        borderJoinStyle: "bevel",
         borderWidth: 1,
       },
     ],
