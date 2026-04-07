@@ -1,7 +1,7 @@
 {
   "name": "sadhasivam.github.io",
-  "version": "1.0.0",
-  "description": "Personal resume",
+  "version": "2.0.0",
+  "description": "Professional resume - Enterprise Platform Architect",
   "homepage": "https://sadhasivam.github.io",
   "repository": {
     "type": "git",
@@ -11,30 +11,33 @@
     "url": "https://github.com/sadhasivam/sadhasivam.github.io/issues"
   },
   "license": "UNLICENSED",
-  "author": "Sadhasivam <sadhasivam@gmail.com>",
+  "author": "Sadhasivam Jayabalaganesan <sadhasivam@gmail.com>",
   "scripts": {
-    "serve": "concurrently \"postcss ./tailwind.css -o public/css/resume.css --watch\"  \"live-server ./ \"",
-    "build": "cross-env NODE_ENV=build postcss ./tailwind.css -o ./public/css/resume.css"
+    "dev": "bun run build:css && concurrently \"bun run watch:css\" \"bun run serve\"",
+    "serve": "bunx --bun serve -l 3000 .",
+    "build": "NODE_ENV=production bun run build:css",
+    "build:css": "postcss ./tailwind.css -o ./public/css/build.css",
+    "watch:css": "postcss ./tailwind.css -o ./public/css/build.css --watch",
+    "preview": "bun run dev"
   },
   "dependencies": {
-    "@fullhuman/postcss-purgecss": "^5.0.0",
-    "autoprefixer": "^9.7.4",
-    "concurrently": "^5.1.0",
-    "cross-env": "^7.0.0",
-    "cssnano": "^5.1.14",
-    "live-server": "^1.1.0",
-    "postcss-cli": "^7.0.0",
-    "postcss-import": "^12.0.1",
-    "tailwindcss": "^1.2.0"
+    "@fullhuman/postcss-purgecss": "6.0.0",
+    "autoprefixer": "10.4.27",
+    "concurrently": "9.2.1",
+    "cssnano": "7.1.4",
+    "postcss": "8.5.8",
+    "postcss-cli": "11.0.1",
+    "postcss-import": "16.1.1",
+    "serve": "14.2.6",
+    "tailwindcss": "3.4.19"
   },
+  "devDependencies": {},
   "main": "index.html",
   "keywords": [
     "resume",
-    "|",
-    "sadhasivam",
-    "|",
-    "director",
-    "|",
-    "leader"
+    "portfolio",
+    "enterprise-architect",
+    "platform-engineering",
+    "technical-leadership"
   ]
 }
