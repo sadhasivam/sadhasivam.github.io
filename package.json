@@ -13,14 +13,16 @@
   "license": "UNLICENSED",
   "author": "Sadhasivam Jayabalaganesan <sadhasivam@gmail.com>",
   "scripts": {
-    "dev": "tsx tools/watch.ts",
-    "watch": "tsx tools/watch.ts",
+    "dev": "bun tools/watch.ts",
+    "lint": "bunx biome lint tools",
+    "fmt": "bunx biome format --write tools",
+    "watch": "bun tools/watch.ts",
     "serve": "bunx --bun serve -l 3000 ./docs",
-    "build": "NODE_ENV=production tsx tools/build.ts",
+    "build": "NODE_ENV=production bun tools/build.ts",
     "build:css": "bun run build:screen && bun run build:print",
     "build:screen": "postcss ./src/styles/screen.css -o ./docs/css/screen.css",
     "build:print": "postcss ./src/styles/print.css -o ./docs/css/print.css",
-    "export:md": "tsx tools/export-markdown.ts",
+    "export:md": "bun tools/export-markdown.ts",
     "export:pdf": "echo 'PDF export coming soon...'",
     "export": "bun run export:md",
     "preview": "bun run build && bun run serve"
@@ -37,6 +39,7 @@
     "tailwindcss": "3.4.19"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.4.10",
     "@types/browser-sync": "2.29.1",
     "@types/jsdom": "28.0.1",
     "@types/node": "25.5.2",
@@ -47,7 +50,6 @@
     "rehype-remark": "10.0.1",
     "rehype-sanitize": "6.0.0",
     "remark-stringify": "11.0.0",
-    "tsx": "4.21.0",
     "typescript": "6.0.2",
     "unified": "11.0.5"
   },

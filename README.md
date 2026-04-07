@@ -37,18 +37,45 @@ bun run build
 
 ```
 .
-├── index.html              # Main resume page
-├── tailwind.css            # Tailwind source styles
-├── public/
+├── src/                    # Authoring source (edit these)
+│   ├── index.html          # Resume HTML source
+│   └── styles/
+│       ├── screen.css      # Screen styles source
+│       ├── print.css       # Print styles source
+│       └── fonts.css       # Font face definitions
+├── tools/                  # Build/export pipeline (TypeScript)
+│   ├── build.ts            # Main build script
+│   ├── export-markdown.ts  # HTML → Markdown
+│   ├── export-pdf.ts       # HTML → PDF (future)
+│   └── export-latex.ts     # HTML → LaTeX (future)
+├── assets/                 # Source assets
+│   └── fonts/              # FiraGo .woff2 files
+├── generated/              # Intermediate export output (gitignored)
+│   ├── resume.md           # Generated markdown
+│   ├── resume.pdf          # Generated PDF (future)
+│   └── resume.tex          # Generated LaTeX (future)
+├── docs/                   # Published site (GitHub Pages serves this)
+│   ├── index.html          # Built HTML
 │   ├── css/
-│   │   └── build.css       # Compiled CSS (generated)
-│   ├── fonts/              # FiraGo font files
-│   └── js/                 # JavaScript files
-├── CLAUDE.md               # AI agent instructions for resume maintenance
+│   │   ├── screen.css      # Built screen CSS
+│   │   └── print.css       # Built print CSS
+│   ├── assets/
+│   │   └── fonts/          # Copied fonts
+│   └── downloads/
+│       └── sadhasivam-jayabalaganesan-resume.pdf  # Manual PDF
 ├── package.json            # Dependencies and scripts
+├── tsconfig.json           # TypeScript configuration
 ├── tailwind.config.js      # Tailwind configuration
-└── postcss.config.js       # PostCSS configuration
+├── postcss.config.js       # PostCSS configuration
+└── .gitignore              # Ignore generated/ and node_modules
 ```
+
+**Architecture:**
+- **`src/`** - Source files you edit
+- **`tools/`** - Build pipeline (transforms src/ → docs/)
+- **`assets/`** - Source assets (fonts, images)
+- **`generated/`** - Intermediate outputs (local only, gitignored)
+- **`docs/`** - Published site (committed, served by GitHub Pages)
 
 ---
 
@@ -56,12 +83,19 @@ bun run build
 
 | Command | Description |
 |---------|-------------|
-| `bun run dev` | Start development server with CSS watch and live reload |
-| `bun run build` | Build production-optimized CSS |
-| `bun run preview` | Alias for `dev` - preview changes locally |
-| `bun run serve` | Start static file server only |
-| `bun run build:css` | Build CSS once |
-| `bun run watch:css` | Watch and rebuild CSS on changes |
+| **`bun run dev`** | 🔥 **Live development** - watches HTML/CSS, auto-reloads browser |
+| **`bun run watch`** | Same as dev - live development mode |
+| **`bun run build`** | 🏗️ **Production build** - CSS + markdown + copy to docs/ |
+| `bun run serve` | Serve docs/ folder only (no live reload) |
+| `bun run preview` | Build once + serve (no live reload) |
+| `bun run build:css` | Build both screen.css and print.css |
+| `bun run export:md` | Export HTML → Markdown (generated/resume.md) |
+| `bun run export:pdf` | Export HTML → PDF (coming soon) |
+| `bun run export` | Run all exports |
+
+**Most used commands:**
+- **Development:** `bun run dev` → edit files → browser auto-reloads ✨
+- **Production:** `bun run build` → deploy docs/ folder
 
 ---
 
@@ -74,17 +108,6 @@ bun run build
 - **FiraGo Font** - Professional typography
 
 ---
-
-## 📝 Updating Content
-
-### Using Claude Code
-
-This repository includes `CLAUDE.md` - instructions for AI-assisted resume maintenance. The file defines:
-
-- Platform leadership narrative framework
-- Content modernization rules
-- Technical positioning guidelines
-- 2026+ Technical Director positioning strategy
 
 ### Manual Updates
 
@@ -121,8 +144,6 @@ This site is hosted on **GitHub Pages** and deploys automatically when changes a
 
 ## 🎯 Design Principles
 
-Following guidelines from `CLAUDE.md`:
-
 1. **Simplicity first** - Clean, professional appearance
 2. **Platform thinking** - Emphasize architecture leadership
 3. **Fast loading** - Minimal dependencies, optimized assets
@@ -135,16 +156,6 @@ Following guidelines from `CLAUDE.md`:
 ## 📄 License
 
 UNLICENSED - Personal resume site
-
----
-
-## 👤 Author
-
-**Sadhasivam Jayabalaganesan**
-- Email: sadhasivam@gmail.com
-- LinkedIn: [linkedin.com/in/sadhasivam](https://linkedin.com/in/sadhasivam)
-- GitHub: [github.com/sadhasivam](https://github.com/sadhasivam)
-- Location: Chester Springs, PA
 
 ---
 
