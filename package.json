@@ -13,12 +13,17 @@
   "license": "UNLICENSED",
   "author": "Sadhasivam Jayabalaganesan <sadhasivam@gmail.com>",
   "scripts": {
-    "dev": "bun run build:css && concurrently \"bun run watch:css\" \"bun run serve\"",
-    "serve": "bunx --bun serve -l 3000 .",
-    "build": "NODE_ENV=production bun run build:css",
-    "build:css": "postcss ./tailwind.css -o ./public/css/build.css",
-    "watch:css": "postcss ./tailwind.css -o ./public/css/build.css --watch",
-    "preview": "bun run dev"
+    "dev": "tsx tools/watch.ts",
+    "watch": "tsx tools/watch.ts",
+    "serve": "bunx --bun serve -l 3000 ./docs",
+    "build": "NODE_ENV=production tsx tools/build.ts",
+    "build:css": "bun run build:screen && bun run build:print",
+    "build:screen": "postcss ./src/styles/screen.css -o ./docs/css/screen.css",
+    "build:print": "postcss ./src/styles/print.css -o ./docs/css/print.css",
+    "export:md": "tsx tools/export-markdown.ts",
+    "export:pdf": "echo 'PDF export coming soon...'",
+    "export": "bun run export:md",
+    "preview": "bun run build && bun run serve"
   },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "6.0.0",
@@ -31,7 +36,21 @@
     "serve": "14.2.6",
     "tailwindcss": "3.4.19"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/browser-sync": "2.29.1",
+    "@types/jsdom": "28.0.1",
+    "@types/node": "25.5.2",
+    "browser-sync": "3.0.4",
+    "chokidar": "5.0.0",
+    "jsdom": "29.0.2",
+    "rehype-parse": "9.0.1",
+    "rehype-remark": "10.0.1",
+    "rehype-sanitize": "6.0.0",
+    "remark-stringify": "11.0.0",
+    "tsx": "4.21.0",
+    "typescript": "6.0.2",
+    "unified": "11.0.5"
+  },
   "main": "index.html",
   "keywords": [
     "resume",

@@ -3,9 +3,8 @@ const plugin = require("tailwindcss/plugin");
 
 module.exports = {
   content: [
-    "./index.html",
-    "./public/**/*.html",
-    "./public/js/**/*.js",
+    "./src/**/*.html",
+    "./src/**/*.js",
   ],
   theme: {
     /* For Letter size */
