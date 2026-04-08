@@ -1,189 +1,179 @@
-# Sadhasivam Jayabalaganesan - Resume
+# Sadhasivam Jayabalaganesan — Resume
 
-Professional resume website for Enterprise Platform Architect specializing in logistics intelligence platforms, event-driven data systems, and AI experimentation frameworks.
+Professional resume website for Enterprise Platform Architect specializing in logistics intelligence platforms, event-driven data systems, and AI/ML experimentation frameworks.
 
-🔗 **Live Site:** [https://sadhasivam.github.io](https://sadhasivam.github.io)
+🔗 **Live:** [sadhasivam.github.io](https://sadhasivam.github.io)  
+📄 **PDF:** [sadhasivam.github.io/resume/sadhasivam-jayabalaganesan-resume.pdf](https://sadhasivam.github.io/resume/sadhasivam-jayabalaganesan-resume.pdf)
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
-- [Bun](https://bun.sh) (v1.3.11 or later) - Fast JavaScript runtime and package manager
+- [Bun](https://bun.sh) v1.3.11+
 
 ### Development
 
 ```bash
-# Install dependencies
 bun install
-
-# Start development server with live reload
 bun run dev
 ```
 
-The site will be available at `http://localhost:3000`
+Site available at `http://localhost:3000` with live reload.
 
-### Build for Production
+### Production Build
 
 ```bash
-# Build optimized CSS
 bun run build
 ```
 
+Generates optimized CSS, exports PDF/Markdown, and copies to `docs/` for GitHub Pages deployment.
+
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 .
-├── src/                    # Authoring source (edit these)
-│   ├── index.html          # Resume HTML source
+├── src/
+│   ├── index.html          # Resume source (edit this)
 │   └── styles/
-│       ├── screen.css      # Screen styles source
-│       ├── print.css       # Print styles source
-│       └── fonts.css       # Font face definitions
-├── tools/                  # Build/export pipeline (TypeScript)
-│   ├── build.ts            # Main build script
-│   ├── export-markdown.ts  # HTML → Markdown
-│   ├── export-pdf.ts       # HTML → PDF (future)
-│   └── export-latex.ts     # HTML → LaTeX (future)
-├── assets/                 # Source assets
-│   └── fonts/              # FiraGo .woff2 files
-├── generated/              # Intermediate export output (gitignored)
-│   ├── resume.md           # Generated markdown
-│   ├── resume.pdf          # Generated PDF (future)
-│   └── resume.tex          # Generated LaTeX (future)
-├── docs/                   # Published site (GitHub Pages serves this)
+│       ├── screen.css      # Screen/web styles
+│       ├── print.css       # Print/PDF styles
+│       └── fonts.css       # Font definitions
+├── tools/                  # Build pipeline (TypeScript)
+│   ├── build.ts            # Main build orchestrator
+│   ├── export-markdown.ts  # HTML → Markdown converter
+│   ├── export-pdf.ts       # HTML → PDF (Playwright)
+│   ├── watch.ts            # Dev server with live reload
+│   └── constants.ts        # Shared configuration
+├── assets/
+│   ├── fonts/              # FiraGo .woff2 files
+│   └── favicon.png
+├── docs/                   # GitHub Pages deployment target
 │   ├── index.html          # Built HTML
 │   ├── css/
 │   │   ├── screen.css      # Built screen CSS
 │   │   └── print.css       # Built print CSS
-│   ├── assets/
-│   │   └── fonts/          # Copied fonts
-│   └── downloads/
-│       └── sadhasivam-jayabalaganesan-resume.pdf  # Manual PDF
-├── package.json            # Dependencies and scripts
-├── tsconfig.json           # TypeScript configuration
-├── tailwind.config.js      # Tailwind configuration
-├── postcss.config.js       # PostCSS configuration
-└── .gitignore              # Ignore generated/ and node_modules
+│   ├── assets/fonts/       # Copied fonts
+│   └── resume/             # Exported artifacts
+│       ├── *.pdf           # Generated PDF
+│       └── *.md            # Generated Markdown
+└── generated/              # Intermediate output (gitignored)
 ```
 
-**Architecture:**
-- **`src/`** - Source files you edit
-- **`tools/`** - Build pipeline (transforms src/ → docs/)
-- **`assets/`** - Source assets (fonts, images)
-- **`generated/`** - Intermediate outputs (local only, gitignored)
-- **`docs/`** - Published site (committed, served by GitHub Pages)
+**Key Directories:**
+- **`src/`** — Edit these source files
+- **`tools/`** — Build pipeline transforms `src/` → `docs/`
+- **`docs/`** — Published site served by GitHub Pages
+- **`generated/`** — Local artifacts (gitignored)
 
 ---
 
-## 🛠️ Available Scripts
+## Available Commands
 
 | Command | Description |
 |---------|-------------|
-| **`bun run dev`** | 🔥 **Live development** - watches HTML/CSS, auto-reloads browser |
-| **`bun run watch`** | Same as dev - live development mode |
-| **`bun run build`** | 🏗️ **Production build** - CSS + markdown + copy to docs/ |
-| `bun run serve` | Serve docs/ folder only (no live reload) |
-| `bun run preview` | Build once + serve (no live reload) |
-| `bun run build:css` | Build both screen.css and print.css |
-| `bun run export:md` | Export HTML → Markdown (generated/resume.md) |
-| `bun run export:pdf` | Export HTML → PDF (coming soon) |
-| `bun run export` | Run all exports |
+| `bun run dev` | **Development server** — live reload on file changes |
+| `bun run build` | **Production build** — CSS + PDF + Markdown → `docs/` |
+| `bun run serve` | Serve `docs/` folder (no live reload) |
+| `bun run export:md` | Generate Markdown export only |
+| `bun run export:pdf` | Generate PDF export only |
+| `bun run export` | Generate both PDF and Markdown |
+| `bun run lint` | Lint TypeScript files |
+| `bun run fmt` | Format TypeScript files |
 
-**Most used commands:**
-- **Development:** `bun run dev` → edit files → browser auto-reloads ✨
-- **Production:** `bun run build` → deploy docs/ folder
-
----
-
-## 🎨 Technology Stack
-
-- **HTML5** - Semantic markup
-- **Tailwind CSS 3.4** - Utility-first styling
-- **PostCSS** - CSS processing pipeline
-- **Bun** - Fast JavaScript runtime and package manager
-- **FiraGo Font** - Professional typography
+**Typical workflow:**
+1. `bun run dev` — edit `src/index.html` with live preview
+2. `bun run build` — generate production assets
+3. Commit and push — GitHub Pages auto-deploys
 
 ---
 
-### Manual Updates
-
-1. Edit content in `index.html`
-2. Run `bun run dev` to preview changes
-3. Commit and push to deploy (GitHub Pages auto-deploys from `main` branch)
-
----
-
-## 🌐 Deployment
-
-This site is hosted on **GitHub Pages** and deploys automatically when changes are pushed to the `main` branch.
-
-**Deployment URL:** `https://sadhasivam.github.io`
-
----
-
-## 📦 Dependencies
+## Technical Stack
 
 ### Core
+- **HTML5** — Semantic markup with accessibility
+- **Tailwind CSS 3.4** — Utility-first styling
+- **PostCSS** — CSS processing (autoprefixer, cssnano)
+- **Bun** — Fast runtime and package manager
 
-- **Tailwind CSS** `^3.4.17` - Utility-first CSS framework
-- **PostCSS** `^8.4.49` - CSS transformation pipeline
-- **Autoprefixer** `^10.4.20` - Vendor prefix automation
-- **cssnano** `^7.0.6` - CSS minification
+### Build Pipeline
+- **TypeScript 6.0** — Type-safe build scripts
+- **Playwright** — Headless browser for PDF generation
+- **unified/rehype/remark** — HTML → Markdown conversion
+- **Browser Sync** — Live reload development server
 
-### Development
-
-- **serve** `^14.2.4` - Static file server
-- **concurrently** `^9.1.2` - Run multiple commands
-- **postcss-cli** `^11.0.0` - PostCSS command-line interface
-
----
-
-## 🎯 Design Principles
-
-1. **Simplicity first** - Clean, professional appearance
-2. **Platform thinking** - Emphasize architecture leadership
-3. **Fast loading** - Minimal dependencies, optimized assets
-4. **Mobile responsive** - Mobile-first design approach
-5. **Accessibility** - Semantic HTML, proper ARIA labels
-6. **Print friendly** - Optimized for PDF export
+### Typography
+- **FiraGo** — Professional sans-serif (WOFF2 format)
 
 ---
 
-## 📄 License
+## Deployment
 
-UNLICENSED - Personal resume site
+Hosted on **GitHub Pages**, auto-deploys from `main` branch.
+
+**URL:** `https://sadhasivam.github.io`
+
+GitHub Pages serves the `docs/` directory. Push to `main` triggers automatic deployment.
 
 ---
 
-## 🔧 Troubleshooting
+## Design Principles
 
-### Port already in use
+- **Technical leadership positioning** — Platform ownership over implementation details
+- **Director-level polish** — Professional aesthetic and content hierarchy
+- **Multi-format support** — Web (responsive), PDF (print-optimized), Markdown (ATS-friendly)
+- **Performance** — Minimal dependencies, optimized assets, fast load times
+- **Accessibility** — Semantic HTML, ARIA labels, keyboard navigation
 
+---
+
+## Export Formats
+
+### PDF
+Generated via Playwright headless browser:
+- Print-optimized CSS (`src/styles/print.css`)
+- US Letter format (8.5" × 11")
+- Clickable links preserved
+- Single-page layout
+
+### Markdown
+Generated via unified pipeline:
+- Preserves contact links (LinkedIn, GitHub)
+- Email obfuscation handled via noscript fallback
+- ATS-compatible formatting
+
+---
+
+## Troubleshooting
+
+### Port conflict
 ```bash
-# Change port in package.json serve script
-# Or kill process on port 3000
+# Kill process on port 3000
 lsof -ti:3000 | xargs kill
 ```
 
 ### CSS not updating
-
 ```bash
-# Clear build cache and rebuild
-rm -rf public/css/build.css
-bun run build:css
+rm -rf docs/css/*.css
+bun run build
 ```
 
 ### Dependencies issues
-
 ```bash
-# Clear and reinstall
 rm -rf node_modules bun.lockb
 bun install
 ```
+
+---
+
+## License
+
+Apache 2.0 — See [LICENSE](LICENSE) for details
+
+The build pipeline and template code are open source. Resume content remains personal.
 
 ---
 

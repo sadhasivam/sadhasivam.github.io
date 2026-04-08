@@ -10,7 +10,7 @@
   "bugs": {
     "url": "https://github.com/sadhasivam/sadhasivam.github.io/issues"
   },
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "author": "Sadhasivam Jayabalaganesan <sadhasivam@gmail.com>",
   "scripts": {
     "dev": "bun tools/watch.ts",
