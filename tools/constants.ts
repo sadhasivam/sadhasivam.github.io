@@ -29,7 +29,7 @@ export const layout = {
 		assets: {
 			fonts: "docs/assets/fonts",
 		},
-		downloads: "docs/downloads",
+		downloads: "docs/resume",
 	},
 
 	generated: {

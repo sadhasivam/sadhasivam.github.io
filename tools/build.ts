@@ -54,26 +54,26 @@ async function build(): Promise<void> {
 		await execAsync("bun run export:md");
 		console.log("✅ Markdown generated\n");
 
-		// 7. Copy markdown to docs/downloads
-		console.log("📄 Copying markdown to docs/downloads...");
+		// 7. Copy markdown to docs/resume
+		console.log("📄 Copying markdown to docs/resume...");
 		await copyFile(
 			getGeneratedArtifactPath("markdown"),
 			getPublishedArtifactPath("markdown"),
 		);
-		console.log("✅ Markdown copied to docs/downloads\n");
+		console.log("✅ Markdown copied to docs/resume\n");
 
 		// 8. Generate PDF
 		console.log("📄 Generating PDF...");
 		await execAsync("bun run export:pdf");
 		console.log("✅ PDF generated\n");
 
-		// 9. Copy PDF to docs/downloads
-		console.log("📄 Copying PDF to docs/downloads...");
+		// 9. Copy PDF to docs/resume
+		console.log("📄 Copying PDF to docs/resume...");
 		await copyFile(
 			getGeneratedArtifactPath("pdf"),
 			getPublishedArtifactPath("pdf"),
 		);
-		console.log("✅ PDF copied to docs/downloads\n");
+		console.log("✅ PDF copied to docs/resume\n");
 
 		console.log("✅ Build complete! Site ready in docs/");
 	} catch (error) {

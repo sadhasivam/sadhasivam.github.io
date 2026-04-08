@@ -91,4 +91,16 @@
   .leading-relaxed {
     line-height: 1.45 !important;
   }
+
+  /* Make links visible in PDF */
+  a {
+    color: #4f46e5 !important; /* indigo-600 */
+    text-decoration: underline !important;
+  }
+
+  /* Contact section links - keep them styled */
+  address a, address button {
+    color: #4f46e5 !important;
+    text-decoration: underline !important;
+  }
 }

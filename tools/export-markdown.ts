@@ -23,19 +23,52 @@ async function exportMarkdown(): Promise<void> {
 		const name = profile.name;
 		const subtitle = profile.title;
 
-		// Extract contact info
+		// Extract contact info (preserving links)
 		const contactSection = document.querySelector(
 			".border-t.border-gray-300.pt-2",
 		);
 		let contactInfo = "";
 		if (contactSection) {
-			const spans = contactSection.querySelectorAll(
-				"span:not(.print\\:hidden)",
-			);
-			const contacts = Array.from(spans)
-				.map((span) => span.textContent?.replace(/\s+/g, " ").trim())
-				.filter((text) => text && !text.includes("Download PDF"));
-			contactInfo = contacts.join(" | ");
+			const directChildren = contactSection.querySelector("div")?.children;
+			if (!directChildren) return;
+
+			const contacts: string[] = [];
+
+			for (const element of Array.from(directChildren)) {
+				// Skip separator spans
+				const text = element.textContent?.trim();
+				if (text === "|") continue;
+
+				// Check for links within the element
+				const link = element.querySelector("a");
+				if (link) {
+					const linkText = link.textContent?.replace(/\s+/g, " ").trim();
+					const href = link.getAttribute("href");
+					// Skip Resume download link (not useful in markdown format)
+					if (linkText && href && !linkText.includes("Resume")) {
+						contacts.push(`[${linkText}](${href})`);
+					}
+					continue;
+				}
+
+				// Check for email button - use noscript fallback only
+				const button = element.querySelector("button#email-btn");
+				if (button) {
+					const noscriptSpan = element.querySelector("noscript span");
+					if (noscriptSpan) {
+						contacts.push(noscriptSpan.textContent?.trim() || "");
+					}
+					continue;
+				}
+
+				// For plain text (like location)
+				const textContent = element.textContent?.replace(/\s+/g, " ").trim();
+				if (textContent) {
+					contacts.push(textContent);
+				}
+			}
+
+			contactInfo = contacts.filter((c) => c).join(" | ");
 		}
 
 		// Extract main content sections (everything after header)
