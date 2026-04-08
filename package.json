@@ -23,8 +23,9 @@
     "build:screen": "postcss ./src/styles/screen.css -o ./docs/css/screen.css",
     "build:print": "postcss ./src/styles/print.css -o ./docs/css/print.css",
     "export:md": "bun tools/export-markdown.ts",
-    "export:pdf": "echo 'PDF export coming soon...'",
-    "export": "bun run export:md",
+    "export:pdf": "bun tools/export-pdf.ts",
+    "export:all": "bun run export:md && bun run export:pdf",
+    "export": "bun run export:all",
     "preview": "bun run build && bun run serve"
   },
   "dependencies": {
@@ -46,6 +47,7 @@
     "browser-sync": "3.0.4",
     "chokidar": "5.0.0",
     "jsdom": "29.0.2",
+    "playwright": "1.59.1",
     "rehype-parse": "9.0.1",
     "rehype-remark": "10.0.1",
     "rehype-sanitize": "6.0.0",

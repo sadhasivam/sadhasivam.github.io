@@ -2,29 +2,26 @@
 
 import { JSDOM } from "jsdom";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { join } from "node:path";
 import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 import { unified } from "unified";
+import { getGeneratedArtifactPath, layout, profile } from "./constants";
 
 async function exportMarkdown(): Promise<void> {
 	console.log("📝 Exporting Markdown from HTML...");
 
 	try {
 		// Read the HTML file from src
-		const htmlContent = await readFile("src/index.html", "utf-8");
+		const htmlContent = await readFile(layout.src.html, "utf-8");
 
 		// Parse HTML and extract the resume content
 		const dom = new JSDOM(htmlContent);
 		const document = dom.window.document;
 
-		// Extract name and title
-		const name =
-			document.querySelector("h1")?.textContent || "Sadhasivam Jayabalaganesan";
-		const subtitle =
-			document.querySelector("h1 + p")?.textContent ||
-			"Technology Leader | Platform Strategy & Innovation";
+		// Use profile for name and title
+		const name = profile.name;
+		const subtitle = profile.title;
 
 		// Extract contact info
 		const contactSection = document.querySelector(
@@ -98,10 +95,10 @@ ${markdownContent.trim()}
 `;
 
 		// Ensure generated directory exists
-		await mkdir("generated", { recursive: true });
+		await mkdir(layout.generated.root, { recursive: true });
 
 		// Write to generated folder
-		const outputPath = join("generated", "resume.md");
+		const outputPath = getGeneratedArtifactPath("markdown");;
 		await writeFile(outputPath, markdown, "utf-8");
 
 		console.log(`✅ Markdown exported to ${outputPath}`);
