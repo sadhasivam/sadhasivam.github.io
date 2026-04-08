@@ -44,10 +44,12 @@ Generates optimized CSS, exports PDF/Markdown, and copies to `docs/` for GitHub 
 │       └── fonts.css       # Font definitions
 ├── tools/                  # Build pipeline (TypeScript)
 │   ├── build.ts            # Main build orchestrator
-│   ├── export-markdown.ts  # HTML → Markdown converter
-│   ├── export-pdf.ts       # HTML → PDF (Playwright)
 │   ├── watch.ts            # Dev server with live reload
-│   └── constants.ts        # Shared configuration
+│   ├── constants.ts        # Profile & layout configuration
+│   ├── buildArtifacts.ts   # Export artifacts & helpers
+│   └── exporters/          # Format-specific exporters
+│       ├── markdown.ts     # HTML → Markdown converter
+│       └── pdf.ts          # HTML → PDF (Playwright)
 ├── assets/
 │   ├── fonts/              # FiraGo .woff2 files
 │   └── favicon.png
@@ -66,6 +68,7 @@ Generates optimized CSS, exports PDF/Markdown, and copies to `docs/` for GitHub 
 **Key Directories:**
 - **`src/`** — Edit these source files
 - **`tools/`** — Build pipeline transforms `src/` → `docs/`
+  - `exporters/` — Format-specific export logic (markdown, pdf)
 - **`docs/`** — Published site served by GitHub Pages
 - **`generated/`** — Local artifacts (gitignored)
 
@@ -78,15 +81,15 @@ Generates optimized CSS, exports PDF/Markdown, and copies to `docs/` for GitHub 
 | `bun run dev` | **Development server** — live reload on file changes |
 | `bun run build` | **Production build** — CSS + PDF + Markdown → `docs/` |
 | `bun run serve` | Serve `docs/` folder (no live reload) |
-| `bun run export:md` | Generate Markdown export only |
+| `bun run export:markdown` | Generate Markdown export only |
 | `bun run export:pdf` | Generate PDF export only |
-| `bun run export` | Generate both PDF and Markdown |
-| `bun run lint` | Lint TypeScript files |
-| `bun run fmt` | Format TypeScript files |
+| `bun run export` | Generate both exports (markdown + pdf) |
+| `bun run lint` | Lint TypeScript files (Biome) |
+| `bun run fmt` | Format TypeScript files (Biome) |
 
 **Typical workflow:**
 1. `bun run dev` — edit `src/index.html` with live preview
-2. `bun run build` — generate production assets
+2. `bun run build` — generate production assets (runs exports in parallel)
 3. Commit and push — GitHub Pages auto-deploys
 
 ---
@@ -127,6 +130,7 @@ GitHub Pages serves the `docs/` directory. Push to `main` triggers automatic dep
 - **Multi-format support** — Web (responsive), PDF (print-optimized), Markdown (ATS-friendly)
 - **Performance** — Minimal dependencies, optimized assets, fast load times
 - **Accessibility** — Semantic HTML, ARIA labels, keyboard navigation
+- **Modular architecture** — Clean separation: constants, build artifacts, format-specific exporters
 
 ---
 

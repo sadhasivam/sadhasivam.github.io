@@ -3,9 +3,39 @@
 import { exec } from "node:child_process";
 import { copyFile, cp, mkdir } from "node:fs/promises";
 import { promisify } from "node:util";
-import { getGeneratedArtifactPath, getPublishedArtifactPath, layout } from "./constants";
+import {
+	type ExportFormat,
+	artifacts,
+	getGeneratedArtifactPath,
+	getPublishedArtifactPath,
+} from "./buildArtifacts";
+import { layout } from "./constants";
 
 const execAsync = promisify(exec);
+
+const getExportCommand = (format: ExportFormat): string =>
+	`bun run export:${format}`;
+
+const formats = Object.keys(artifacts) as ExportFormat[];
+
+const directories = [
+	layout.docs.css.root,
+	layout.docs.assets.fonts,
+	layout.docs.resume,
+];
+
+async function exportFormat(format: ExportFormat) {
+	console.log(`📝 Generating ${format}...`);
+	await execAsync(getExportCommand(format));
+
+	console.log(`📄 Publishing ${format}...`);
+	await copyFile(
+		getGeneratedArtifactPath(format),
+		getPublishedArtifactPath(format),
+	);
+
+	console.log(`✅ ${format} ready\n`);
+}
 
 async function build(): Promise<void> {
 	console.log("🏗️  Building site...\n");
@@ -13,10 +43,9 @@ async function build(): Promise<void> {
 	try {
 		// 1. Create output directories
 		console.log("📁 Creating output directories...");
-		await mkdir(layout.docs.root, { recursive: true });
-		await mkdir(layout.docs.css.root, { recursive: true });
-		await mkdir(layout.docs.assets.fonts, { recursive: true });
-		await mkdir(layout.docs.downloads, { recursive: true });
+		await Promise.all(
+			directories.map((dir) => mkdir(dir, { recursive: true })),
+		);
 		console.log("✅ Directories created\n");
 
 		// 2. Copy index.html
@@ -49,31 +78,8 @@ async function build(): Promise<void> {
 			);
 		}
 
-		// 6. Generate markdown
-		console.log("📝 Generating markdown...");
-		await execAsync("bun run export:md");
-		console.log("✅ Markdown generated\n");
-
-		// 7. Copy markdown to docs/resume
-		console.log("📄 Copying markdown to docs/resume...");
-		await copyFile(
-			getGeneratedArtifactPath("markdown"),
-			getPublishedArtifactPath("markdown"),
-		);
-		console.log("✅ Markdown copied to docs/resume\n");
-
-		// 8. Generate PDF
-		console.log("📄 Generating PDF...");
-		await execAsync("bun run export:pdf");
-		console.log("✅ PDF generated\n");
-
-		// 9. Copy PDF to docs/resume
-		console.log("📄 Copying PDF to docs/resume...");
-		await copyFile(
-			getGeneratedArtifactPath("pdf"),
-			getPublishedArtifactPath("pdf"),
-		);
-		console.log("✅ PDF copied to docs/resume\n");
+		// 6. Generate markdown & pdf
+		await Promise.all(formats.map(exportFormat));
 
 		console.log("✅ Build complete! Site ready in docs/");
 	} catch (error) {

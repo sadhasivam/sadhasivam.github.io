@@ -2,7 +2,8 @@
 
 import { mkdir } from "node:fs/promises";
 import { chromium } from "playwright";
-import { getGeneratedArtifactPath, layout } from "./constants";
+import { getGeneratedArtifactPath } from "../buildArtifacts";
+import { layout } from "../constants";
 
 async function exportPDF(): Promise<void> {
 	console.log("📄 Generating PDF from HTML...");

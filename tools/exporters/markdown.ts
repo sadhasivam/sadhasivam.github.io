@@ -6,7 +6,8 @@ import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 import { unified } from "unified";
-import { getGeneratedArtifactPath, layout, profile } from "./constants";
+import { getGeneratedArtifactPath } from "../buildArtifacts";
+import { layout, profile } from "../constants";
 
 async function exportMarkdown(): Promise<void> {
 	console.log("📝 Exporting Markdown from HTML...");
@@ -131,7 +132,7 @@ ${markdownContent.trim()}
 		await mkdir(layout.generated.root, { recursive: true });
 
 		// Write to generated folder
-		const outputPath = getGeneratedArtifactPath("markdown");;
+		const outputPath = getGeneratedArtifactPath("markdown");
 		await writeFile(outputPath, markdown, "utf-8");
 
 		console.log(`✅ Markdown exported to ${outputPath}`);

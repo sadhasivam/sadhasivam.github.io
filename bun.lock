@@ -19,7 +19,6 @@
         "@biomejs/biome": "2.4.10",
         "@types/browser-sync": "2.29.1",
         "@types/jsdom": "28.0.1",
-        "@types/node": "25.5.2",
         "browser-sync": "3.0.4",
         "chokidar": "5.0.0",
         "jsdom": "29.0.2",
